@@ -13,13 +13,18 @@ $publicKey = $privateKey->getPublicKey();
 file_put_contents('private.pem', $privateKey);
 file_put_contents('public.pem', $publicKey);
 
+$key = file_get_contents('private.pem');
+
+$privateKey1 = RSA::load($key);
+
 echo "Public and private keys generated and saved.\n";
 
 // Content to be encrypted
 $plaintext = 'Hello, World!';
 
 // Load the public key for encryption
-echo $ciphertext = $privateKey->getPublicKey()->encrypt($plaintext);
+echo $ciphertext = $privateKey1->getPublicKey()->encrypt($plaintext);
 echo $privateKey->decrypt($ciphertext);
+
 
 ?>
